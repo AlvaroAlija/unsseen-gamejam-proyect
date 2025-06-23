@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://uei886tto52h"]
+
+[ext_resource type="Script" uid="uid://5xydb0ickbx0" path="res://scripts/barro.gd" id="1_5ticy"]
+[ext_resource type="Texture2D" uid="uid://xkbqr74p6j11" path="res://pixil-frame-0-barro-Photoroom.png" id="2_5ticy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdc0n"]
+size = Vector2(540, 36)
+
+[node name="barro" type="Area2D"]
+script = ExtResource("1_5ticy")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+scale = Vector2(3, 3)
+texture = ExtResource("2_5ticy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_sdc0n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

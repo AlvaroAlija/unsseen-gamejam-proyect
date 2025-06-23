@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxu8fkcqjtqoe"]
+
+[ext_resource type="Script" uid="uid://b1lxsfq15a7fk" path="res://scripts/selector_niveles.gd" id="1_kl1es"]
+[ext_resource type="Texture2D" uid="uid://duc4ytaij2lry" path="res://free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/1.png" id="2_3e61i"]
+[ext_resource type="Texture2D" uid="uid://dprkyui1s86ix" path="res://free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/3.png" id="3_wqq37"]
+[ext_resource type="Texture2D" uid="uid://detqcpa5glfbw" path="res://free-pixel-art-cloud-and-sky-backgrounds/4. NEW CLOUDS/2.png" id="4_wqq37"]
+[ext_resource type="AudioStream" uid="uid://bgd51reraokai" path="res://sounds/Aylex - Too Hot (freetouse.com).mp3" id="5_iprnm"]
+
+[node name="selector_niveles" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kl1es")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 339.0
+offset_right = 239.0
+offset_bottom = 379.0
+scale = Vector2(2, 2)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1078.0
+offset_top = 600.0
+offset_right = 1127.0
+offset_bottom = 628.0
+text = "MENU"
+
+[node name="1" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(1005.5, 581.5)
+scale = Vector2(3.59896, 3.68827)
+texture = ExtResource("2_3e61i")
+
+[node name="3" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(228, 390)
+scale = Vector2(1.92708, 1.77778)
+texture = ExtResource("3_wqq37")
+
+[node name="2" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(980, 510)
+texture = ExtResource("4_wqq37")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_iprnm")
+autoplay = true
+max_distance = 4096.0
+attenuation = 1e-05
+parameters/looping = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

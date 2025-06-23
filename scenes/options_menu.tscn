@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://2c3sqhwy0c1o"]
+
+[ext_resource type="Script" uid="uid://bsrliwgdvrysw" path="res://scripts/options_menu.gd" id="1_3xsyx"]
+[ext_resource type="Texture2D" uid="uid://be5xujrmslb0e" path="res://free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/1.png" id="1_liyum"]
+[ext_resource type="Texture2D" uid="uid://c0q6orjmtodbx" path="res://free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/2.png" id="2_hm4m4"]
+[ext_resource type="Texture2D" uid="uid://bfow31ptp7a08" path="res://free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/3.png" id="3_lfjc7"]
+[ext_resource type="Texture2D" uid="uid://d0vn8462rea4m" path="res://free-pixel-art-cloud-and-sky-backgrounds/3. NEW CLOUDS/6.png" id="4_lfjc7"]
+[ext_resource type="AudioStream" uid="uid://bgd51reraokai" path="res://sounds/Aylex - Too Hot (freetouse.com).mp3" id="6_dhn0l"]
+
+[node name="options_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3xsyx")
+
+[node name="1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(584.5, 336.5)
+scale = Vector2(2.07465, 2.18827)
+texture = ExtResource("1_liyum")
+
+[node name="2" type="Sprite2D" parent="."]
+position = Vector2(965, 155)
+texture = ExtResource("2_hm4m4")
+
+[node name="3" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(552, 207.5)
+scale = Vector2(2.13194, 1.32407)
+texture = ExtResource("3_lfjc7")
+
+[node name="6" type="Sprite2D" parent="."]
+position = Vector2(287, 504)
+scale = Vector2(1.15799, 1.12037)
+texture = ExtResource("4_lfjc7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 195.0
+offset_right = 231.0
+offset_bottom = 240.0
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+min_value = -20.0
+max_value = 15.0
+step = 0.1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 98.0
+offset_right = 104.0
+offset_bottom = 118.0
+scale = Vector2(3, 3)
+text = "VOLUME"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1082.0
+offset_top = 601.0
+offset_right = 1131.0
+offset_bottom = 629.0
+text = "MENU"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_dhn0l")
+autoplay = true
+max_distance = 4096.0
+attenuation = 1e-05
+parameters/looping = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

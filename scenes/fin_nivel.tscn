@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://x10xv04sma4s"]
+
+[ext_resource type="Script" uid="uid://c6grkcwvwouhe" path="res://scripts/fin_nivel.gd" id="1_f3mue"]
+[ext_resource type="Texture2D" uid="uid://c7mn0s1u2px2q" path="res://IMG_1025-Photoroom.png" id="2_fhski"]
+[ext_resource type="Texture2D" uid="uid://5saxp78vlfy" path="res://pixil-frame-0 (13).png" id="3_iicy2"]
+[ext_resource type="Texture2D" uid="uid://ck2uq1oqsea2c" path="res://pixilart-sprite-Photoroom.png" id="4_xuxjr"]
+[ext_resource type="AudioStream" uid="uid://bgd51reraokai" path="res://sounds/Aylex - Too Hot (freetouse.com).mp3" id="5_iicy2"]
+
+[node name="fin_nivel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f3mue")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 193.0
+offset_right = 579.0
+offset_bottom = 216.0
+scale = Vector2(2, 2)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -15.5
+offset_right = 49.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(47.3333, 16)
+text = "NEXT LEVEL"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 47.0
+offset_right = 59.0
+offset_bottom = 67.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(61, 10.6667)
+text = "YOU DELIVERED:"
+
+[node name="Img1025-photoroom" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.721569)
+position = Vector2(954, 247)
+rotation = 0.470053
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_fhski")
+
+[node name="Pixil-frame-0(13)" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(581, 350)
+scale = Vector2(11.68, 7.06)
+texture = ExtResource("3_iicy2")
+
+[node name="Pixilart-sprite-photoroom" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.643137)
+position = Vector2(204, 300)
+rotation = -0.287378
+scale = Vector2(5, 5)
+texture = ExtResource("4_xuxjr")
+region_enabled = true
+region_rect = Rect2(0, 0, 59, 66)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_iicy2")
+autoplay = true
+max_distance = 4096.0
+attenuation = 1e-05
+parameters/looping = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

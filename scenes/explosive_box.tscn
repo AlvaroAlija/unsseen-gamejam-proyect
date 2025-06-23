@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://bxscc7re1m1xc"]
+
+[ext_resource type="Script" uid="uid://cwe27mp6865fg" path="res://scripts/explosive_box.gd" id="1_s3oar"]
+[ext_resource type="Texture2D" uid="uid://cgfdih885jnva" path="res://pixilart-sprite-dron -Photoroom.png" id="2_h4nnm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4nnm"]
+size = Vector2(306, 201.25)
+
+[sub_resource type="Gradient" id="Gradient_s3oar"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h4nnm"]
+gradient = SubResource("Gradient_s3oar")
+fill = 1
+fill_from = Vector2(0.504587, 0.511468)
+fill_to = Vector2(0.850917, 0.887615)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejo8j"]
+atlas = ExtResource("2_h4nnm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agyaf"]
+atlas = ExtResource("2_h4nnm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_te1ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejo8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agyaf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_ejo8j"]
+offsets = PackedFloat32Array(0, 0.633117)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agyaf"]
+gradient = SubResource("Gradient_ejo8j")
+fill = 1
+fill_from = Vector2(0.493119, 0.502294)
+
+[sub_resource type="Animation" id="Animation_ejo8j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -53)]
+}
+
+[sub_resource type="Animation" id="Animation_h4nnm"]
+resource_name = "def"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -53), Vector2(1, -69)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ejo8j"]
+_data = {
+&"RESET": SubResource("Animation_ejo8j"),
+&"def": SubResource("Animation_h4nnm")
+}
+
+[sub_resource type="Gradient" id="Gradient_h4nnm"]
+colors = PackedColorArray(0.437363, 0.214826, 0, 1, 0.633757, 0.633757, 0.633757, 1)
+
+[node name="explosive_box" type="Area2D"]
+script = ExtResource("1_s3oar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -2.375)
+shape = SubResource("RectangleShape2D_h4nnm")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-3, -58)
+scale = Vector2(4.39062, 3.85938)
+texture = SubResource("GradientTexture2D_h4nnm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -53)
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_te1ve")
+autoplay = "default"
+frame_progress = 0.0387501
+
+[node name="PointLight2D2" type="PointLight2D" parent="AnimatedSprite2D"]
+position = Vector2(0, -18.452)
+scale = Vector2(0.333333, 0.333333)
+color = Color(1, 0.0745098, 0.184314, 1)
+energy = 11.44
+texture = SubResource("GradientTexture2D_agyaf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ejo8j")
+}
+autoplay = "def"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(2, 96)
+amount = 20
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)
+spread = 180.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_h4nnm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
