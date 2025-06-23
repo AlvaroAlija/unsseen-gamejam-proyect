@@ -25,8 +25,10 @@ The game emphasizes cautious exploration, memory, and time management.
 
 ## Controls
 
-- Left Arrow Key: Move Left
-- Right Arrow Key: Move Right
-- Pick Up Key: Collect hidden explosives (key varies by setup)
+- A: Move Left
+- D: Move Right
+- E: Collect hidden explosives (key varies by setup)
+- F: Use the flash to see the map near to you
+- MOUSE LEFT CLICK: Dash
 - Light source automatically illuminates your surroundings.
 
